@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text-to-Speech Playground</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f0e4d7;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+        }
+
+        h1 {
+            color: #ff6347;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        #textInput {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ff6347;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-family: inherit;
+            font-size: 18px;
+        }
+
+        #speakButton {
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 15px 40px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        #speakButton:hover {
+            background-color: #e5533b;
+        }
+
+        ::placeholder {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎤 Talk to Me! 🎤</h1>
+        <textarea id="textInput" rows="4" placeholder="Type something fun!"></textarea>
+        <br>
+        <button id="speakButton">🔊 Speak It! 🔊</button>
+    </div>
+
+    <script>
+        const textInput = document.getElementById('textInput');
+const speakButton = document.getElementById('speakButton');
+
+speakButton.addEventListener('click', () => {
+    const text = textInput.value;
+    speakText(text);
+});
+
+function speakText(text) {
+    if ('speechSynthesis' in window) {
+        const synthesis = window.speechSynthesis;
+        const utterance = new SpeechSynthesisUtterance(text);
+        synthesis.speak(utterance);
+    } else {
+        alert("Speech synthesis is not supported in this browser.");
+    }
+}
+
+    </script>
+</body>
+</html>

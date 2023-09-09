@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Geolocation Without Google Maps</title>
+</head>
+<body>
+    <p>Your current geolocation:</p>
+    <p id="location"></p>
+    <script>
+        function showLocation(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    
+    const locationElement = document.getElementById('location');
+    locationElement.textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+}
+
+function handleLocationError(error) {
+    const locationElement = document.getElementById('location');
+    locationElement.textContent = `Error getting geolocation: ${error.message}`;
+}
+
+function handleLocation() {
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(showLocation, handleLocationError);
+    } else {
+        const locationElement = document.getElementById('location');
+        locationElement.textContent = "Geolocation not supported";
+    }
+}
+
+handleLocation();
+
+    </script>
+</body>
+</html>

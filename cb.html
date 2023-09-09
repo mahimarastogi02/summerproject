@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Interaction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            margin: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #007bff;
+            margin-top: 0;
+        }
+        .form-group {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chat Interaction</h1>
+        <form id="gpt-form" action="http://43.205.177.187/cgi-bin/cb.py" method="post">
+            <div class="form-group">
+                <label for="message">Your Message:</label>
+                <input type="text" id="message" name="message" required>
+            </div>
+            <button type="submit">Generate Response</button>
+        </form>
+        <div id="response-container" style="display: none;">
+            <h3>Generated Response:</h3>
+            <p id="response"></p>
+        </div>
+    </div>
+    <script>
+        const form = document.getElementById('gpt-form');
+        const responseContainer = document.getElementById('response-container');
+        const responseElement = document.getElementById('response');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const message = document.getElementById('message').value;
+            responseContainer.style.display = 'none';
+
+            const response = await fetch('http://43.205.177.187/cgi-bin/cb.py', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `message=${encodeURIComponent(message)}`
+            });
+
+            if (response.ok) {
+                const responseData = await response.text();
+                responseElement.textContent = responseData;
+                responseContainer.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

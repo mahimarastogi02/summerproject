@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+  }
+
+  #container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  #in1 {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: none;
+  }
+
+  #p1 {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+</style>
+<script>
+function lw() {
+    var xhr = new XMLHttpRequest();
+    var mycmd = document.getElementById("in1").value;
+
+    xhr.open("GET", "http://13.233.186.36/cgi-bin/new.py?c=" + mycmd, true);
+    xhr.send();
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            document.getElementById("p1").innerHTML = this.responseText;
+        }
+    }
+}
+</script>
+</head>
+<body>
+<div id="container">
+  <h1>Command Executor</h1>
+  <p>Enter your command:</p>
+  <input id="in1" onkeyup="lw()" placeholder="Type your command here"/>
+
+<pre>
+<div id="p1">Output will be shown here...</div>
+</pre>
+</div>
+</body>
+</html>
+                       

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Command Executor</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .box {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 6px;
+            box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+        }
+        .btn {
+            background-color: #007bff;
+        }
+        .btn:hover {
+            background-color: #c01818;
+        }
+        #output {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            // Initialize Materialize components
+            M.AutoInit();
+
+            $("form").submit(function(event) {
+                event.preventDefault(); // Prevent the form from submitting normally
+                
+                var formData = $(this).serialize(); // Serialize form data
+                
+                $.ajax({
+                    type: "POST",
+                    url: "43.205.177.187/cgi-bin/lin.py", // Replace with the actual path to your CGI script
+                    data: formData,
+                    success: function(response) {
+                        $("#output pre").html(response); // Display the output in the designated pre element
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h1 class="center-align">Command Executor</h1>
+            
+            <form>
+                <div class="input-field">
+                    <input type="text" id="cmd" name="c" required>
+                    <label for="cmd">Enter a command</label>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit">Execute<i class="material-icons right">send</i></button>
+            </form>
+            
+            <div id="output">
+                <h2 class="center-align">Output:</h2>
+                <pre>
+                    <!-- This is where the output from the CGI script will be displayed -->
+                </pre>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

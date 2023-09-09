@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1464618663641-bbdd760ae84a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80'); /* Replace with your image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            margin: 20px;
+            flex: 1;
+        }
+        .containers-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1000px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 36px;
+            color: #007bff;
+            margin-top: 0;
+        }
+        .menu-title {
+            font-size: 48px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .service-button {
+            margin: 10px;
+            padding: 10px 0;
+            width: 150px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #7eb2ea;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .service-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function openPage(url) {
+            window.location.href = url;
+        }
+    </script>
+</head>
+<body>
+    <h1 class="menu-title">Summer Project Menu</h1>
+    <div class="containers-wrapper">
+        <div class="container">
+            <h1>AWS Services</h1>
+            <div class="button-container">
+                <button class="service-button" onclick="openPage('ec2_create.html')">EC2 Create</button>
+                <button class="service-button" onclick="openPage('s3_create.html')">S3 Bucket Create</button>
+                <button class="service-button" onclick="openPage('sns.html')">SNS Services</button>
+                <!-- Add more buttons for other services as needed -->
+            </div>
+        </div>
+        
+        <div class="container">
+            <h1>Docker Services</h1>
+            <div class="button-container">
+                <button class="service-button" onclick="openPage('dock_create.html')">Docker Create</button>
+                <button class="service-button" onclick="openPage('dk_start.html')">Docker Start</button>
+                <button class="service-button" onclick="openPage('dk_stop.html')">Docker Stop</button>
+                <!-- Add more buttons for other Docker services as needed -->
+            </div>
+        </div>
+
+        <div class="container">
+            <h1>Python Services</h1>
+            <div class="button-container">
+                <button class="service-button" onclick="openPage('sms.html')">Send SMS</button>
+                <button class="service-button" onclick="openPage('cb.html')">Chat</button>
+                <!-- Add more buttons for other Kubernetes services as needed -->
+            </div>
+        </div>
+
+        <div class="container">
+            <h1>Linux Services</h1>
+            <div class="button-container">
+                <button class="service-button" onclick="openPage('http://65.2.188.81/tew.html')">Linux CMD Interpreter</button>
+                <!-- Add more buttons for other Kubernetes services as needed -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
